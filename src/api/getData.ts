@@ -7,18 +7,23 @@ type TApiResponse<T> = {
   data: T;
 };
 
-const idToken="sadfadsfd";
 // Define the generic getData function
-const getData = async <T>(url: string): Promise<TApiResponse<T>> => {
+const getData = async <T>(url: string, idToken?: string): Promise<TApiResponse<T>> => {
   try {
-    const response: AxiosResponse<TApiResponse<T>> = await axios.get(url,
-        {
-            baseURL: 'https://localhost:7164/',
-            headers: {
-            'Content-Type': 'application/json',
-             'Authorization': `Bearer ${idToken}`,
-            },
-        });
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+
+    // Add Authorization header only if idToken is provided
+    if (idToken) {
+      headers['Authorization'] = `Bearer ${idToken}`;
+    }
+
+    const response: AxiosResponse<TApiResponse<T>> = await axios.get(url, {
+      baseURL: 'https://localhost:7164/',
+      headers: headers,
+    });
+
     return {
       code: response.data.code,
       message: response.data.message,
@@ -30,4 +35,5 @@ const getData = async <T>(url: string): Promise<TApiResponse<T>> => {
   }
 };
 
-export default getData;
+const idToken = localStorage.getItem('TokenKey');
+export default getData(idToken);
