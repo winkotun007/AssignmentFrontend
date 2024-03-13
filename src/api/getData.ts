@@ -7,6 +7,7 @@ type TApiResponse<T> = {
   data: T;
 };
 
+const idToken="sadfadsfd";
 // Define the generic getData function
 const getData = async <T>(url: string): Promise<TApiResponse<T>> => {
   try {
@@ -15,6 +16,7 @@ const getData = async <T>(url: string): Promise<TApiResponse<T>> => {
             baseURL: 'https://localhost:7164/',
             headers: {
             'Content-Type': 'application/json',
+             'Authorization': `Bearer ${idToken}`,
             },
         });
     return {
