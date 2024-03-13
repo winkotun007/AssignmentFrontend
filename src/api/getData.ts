@@ -1,13 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 
-// Define a generic type for your API response
 type TApiResponse<T> = {
   code: number;
   message: string;
   data: T;
 };
 
-// Define the generic getData function
 const getData = async <T>(url: string, idToken?: string): Promise<TApiResponse<T>> => {
   try {
     const headers: Record<string, string> = {
@@ -35,5 +33,4 @@ const getData = async <T>(url: string, idToken?: string): Promise<TApiResponse<T
   }
 };
 
-const idToken = localStorage.getItem('TokenKey');
-export default getData(idToken);
+export default getData;
