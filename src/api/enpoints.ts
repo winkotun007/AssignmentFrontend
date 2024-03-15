@@ -3,6 +3,6 @@ export const endpoint = {
   logout: `api/logout`,
   Visitors: `api/Visitors`,
   getBuidling : 'api/Building',
-  getRoomsByLevel : 'api/Rooms/GetRoomsByLevel/',
-  getLevelsByBuilding : 'api/Levels/GetLevelsByBuilding/'
+  getRoomsByLevel : 'api/Rooms/GetRoomsByLevel',
+  getLevelsByBuilding : 'api/Levels/GetLevelsByBuilding'
 };

@@ -1,27 +1,35 @@
 import axios, { AxiosResponse } from "axios";
+import { TApiResponse } from "../models";
 
-type TApiResponse<T> = {
-  code: number;
-  message: string;
-  data: T;
-};
+// Define the interface for the response data
 
-const getData = async <T>(url: string, idToken?: string): Promise<TApiResponse<T>> => {
+
+const getData = async <T>(url: string, requestData: any | null): Promise<TApiResponse<T>> => {
   try {
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
+
+    const headers: { 'Content-Type': string; 'Authorization'?: string } = 
+    {
+     'Content-Type': 'application/json',
     };
 
-    // Add Authorization header only if idToken is provided
+    const idToken = localStorage.getItem('TokenKey');
+
     if (idToken) {
-      headers['Authorization'] = `Bearer ${idToken}`;
+      headers.Authorization= `Bearer ${idToken}`;
     }
 
-    const response: AxiosResponse<TApiResponse<T>> = await axios.get(url, {
+    console.log(requestData);
+
+    const options: Record<string, any> = {
       baseURL: 'https://localhost:7164/',
       headers: headers,
-    });
+      data : requestData 
+    };
 
+    const response: AxiosResponse<TApiResponse<T>> = await axios.get(url, options);
+    
+    console.log('Response From getData');
+    console.log(response);
     return {
       code: response.data.code,
       message: response.data.message,

@@ -1,7 +1,14 @@
+import { publicDecrypt } from "crypto";
+
 interface IPostLogin  {
   UserName: string;
   Password: string;
 };
+
+interface IDModel
+	{
+     Id?  : string; 
+   }
 
 interface IVisitors {
   firstName?: string;
@@ -61,5 +68,12 @@ type TLoginResponse = {
   "message": string;
   "Data" : {}
 };
+interface TApiResponse<T> {
+  code: number;
+  message: string;
+  data: T;
+}
 
-export { IPostLogin,TLoginResponse ,IVisitors,TResponse ,IRoom,ILevel,IBuilding ,IVisitorswithId};
+  
+  
+export { IPostLogin,TLoginResponse ,IVisitors,TResponse ,IRoom,ILevel,IBuilding ,IVisitorswithId,IDModel,TApiResponse};

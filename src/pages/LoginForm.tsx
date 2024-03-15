@@ -11,8 +11,8 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IPostLogin } from "../models";
 import { endpoint } from "../api/enpoints";
-import fetchData from "../api/fetchData";
 import { useNavigate } from "react-router-dom";
+import controller from "../api/apiGuru";
 
 const LoginForm = () => {
 
@@ -20,9 +20,9 @@ const LoginForm = () => {
 
   const onSubmit = async (data: IPostLogin) => {
     try {
-      const responseData = await fetchData(endpoint.login, data);
+      const responseData = await controller('post',endpoint.login, data);
 
-      localStorage.setItem("TokenKey", responseData.data.message);
+      localStorage.setItem("TokenKey", responseData.message);
 
       navigate("/list");
     } catch (error) {

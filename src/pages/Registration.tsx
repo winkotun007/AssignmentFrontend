@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { IBuilding, ILevel, IRoom, IVisitors} from "../models";
+import { IBuilding, IDModel, ILevel, IRoom, IVisitors } from "../models";
 // mui
 import {
   Box,
@@ -21,7 +21,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import fetchData from "../api/fetchData";
 import {endpoint} from "../api/enpoints";
 import getData from "../api/getData";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
+import controller from "../api/apiGuru";
+
 
 const Registration: React.FC = () => {
   const schema = yup
@@ -84,25 +86,28 @@ const Registration: React.FC = () => {
   const [levelList, setLevelList] = useState<ILevel[]>([]);
   const [buildingList,setBuildingList] = useState<IBuilding[]>([]);
   const [roomlist,setRoomList] = useState<IRoom[]>([]);
-  
-  const fetchAllData = async () => {
-    try {
-      const buildingDataResponse = await getData<IBuilding[]>(endpoint.getBuidling);
-      
-      setBuildingList(buildingDataResponse.data);
-  
-    } catch (error) {
-      console.error('Error:', error);
-      // Handle error if needed
-    }
-  };
-  
 
-    fetchAllData(); // Call the function when the component mounts
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        const requestData : IDModel = {Id : 'dddd'};
+        const buildingDataResponse = await getData<IBuilding[]>(endpoint.getBuidling,requestData);
+        setBuildingList(buildingDataResponse.data);
+      } catch (error) {
+        console.error('Error fetching building data:', error);
+      }
+    };
+
+    fetchAllData();
+  }, []); 
+
+
+    //fetchAllData(); // Call the function when the component mounts
 
     const fetchLevels = async (buildingId: string) => {
       try {
-        const levelDataResponse = await getData<ILevel[]>(endpoint.getLevelsByBuilding+buildingId,);
+        const requestData : IDModel = { Id : buildingId };
+        const levelDataResponse = await fetchData<ILevel[]>(endpoint.getLevelsByBuilding,requestData);
         setLevelList(levelDataResponse.data);
       } catch (error) {
         console.error('Error fetching levels:', error);
@@ -111,7 +116,8 @@ const Registration: React.FC = () => {
 
     const fetchRooms = async (levelId: string) => {
       try {
-        const roomDataResponse = await getData<IRoom[]>(endpoint.getRoomsByLevel+levelId);
+        const requestData : IDModel = { Id : levelId };
+        const roomDataResponse = await fetchData<IRoom[]>(endpoint.getRoomsByLevel,requestData);
         setRoomList(roomDataResponse.data);
       } catch (error) {
         console.error('Error fetching rooms:', error);

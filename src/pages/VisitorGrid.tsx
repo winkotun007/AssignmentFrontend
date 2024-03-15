@@ -2,7 +2,7 @@ import  { useEffect, useState } from "react";
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import { endpoint } from "../api/enpoints";
 import getData from "../api/getData";
-import {  IVisitorswithId } from "../models";
+import {  IDModel, IVisitorswithId } from "../models";
 import { useNavigate } from "react-router-dom";
 
 const VisitorGrid = () => {
@@ -11,7 +11,8 @@ const VisitorGrid = () => {
   useEffect(() => {
     const fetchVisitor = async () => {
       try {
-        const levelDataResponse = await getData<IVisitorswithId[]>(endpoint.Visitors);
+        const requestData : IDModel  = { Id : 'asdfds' };
+        const levelDataResponse = await getData<IVisitorswithId[]>(endpoint.Visitors,requestData);
         console.log(levelDataResponse);
         // Assuming levelDataResponse is an array of objects with emp_id, emp_name, emp_profile, and emp_salary properties
         setRows(levelDataResponse.data.map((visitor) => ({ id: visitor.visitorId, ...visitor })));
