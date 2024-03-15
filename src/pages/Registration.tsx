@@ -1,20 +1,7 @@
 import * as yup from "yup";
 import { IBuilding, IDModel, ILevel, IRoom, IVisitors } from "../models";
 // mui
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  FormLabel,
-  Grid,
-  MenuItem,
-  Radio,
-  RadioGroup,
-  Select,
-  TextField,
+import {Box,Button,Checkbox,FormControl,FormControlLabel,FormHelperText,FormLabel,Grid,MenuItem,Radio,RadioGroup,Select,  TextField,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -22,7 +9,6 @@ import fetchData from "../api/fetchData";
 import {endpoint} from "../api/enpoints";
 import getData from "../api/getData";
 import {  useEffect, useState } from "react";
-import controller from "../api/apiGuru";
 
 
 const Registration: React.FC = () => {
@@ -80,8 +66,8 @@ const Registration: React.FC = () => {
       roomId: "",
     },
   });
-  const [selectedBuilding, setSelectedBuilding] = useState("");
-  const [selectedLevel, setSelectedLevel] = useState("");
+  // const [selectedBuilding, setSelectedBuilding] = useState("");
+  // const [selectedLevel, setSelectedLevel] = useState("");
 
   const [levelList, setLevelList] = useState<ILevel[]>([]);
   const [buildingList,setBuildingList] = useState<IBuilding[]>([]);
@@ -292,7 +278,7 @@ const Registration: React.FC = () => {
                         field.onChange(value);
                         const buildingId = value.target.value;
                         console.log(buildingId);
-                        setSelectedBuilding(value.target.value);
+                        //setSelectedBuilding(value.target.value);
                         console.log(value);
                         fetchLevels(buildingId);
                         //setValue("leaveTypeId", "");
@@ -332,7 +318,7 @@ const Registration: React.FC = () => {
                       onChange={(value) => {
                         field.onChange(value);
                         const levelId = value.target.value;
-                        setSelectedLevel(value.target.value);
+                        //setSelectedLevel(value.target.value);
                         console.log(levelId);
                         fetchRooms(levelId);
                         console.log(value);

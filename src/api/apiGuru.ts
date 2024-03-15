@@ -1,5 +1,4 @@
-import axios, { AxiosError, AxiosResponse, isAxiosError } from "axios";
-import apiClient from "./axios";
+import axios, {AxiosResponse } from "axios";
 import { TApiResponse } from "~/models";
 export * from "../api/enpoints";
 
