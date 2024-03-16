@@ -14,6 +14,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
+    - name: Login DockerHub ddddd
+      env : 
+        DOCKER_USERNAME : ${{secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD : ${{secrets.DOCKER_PASSWORD}}
+      run : docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - name: Pull Docker image
       run: sudo docker pull winkohtun/assignmentfrontend:latest
     - name: Delete Old docker container
