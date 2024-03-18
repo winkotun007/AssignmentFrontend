@@ -21,7 +21,7 @@ const getData = async <T>(url: string, requestData: any | null): Promise<TApiRes
     console.log(requestData);
 
     const options: Record<string, any> = {
-      baseURL: 'https://localhost:7164/',
+      baseURL: 'http://47.128.148.50:80/',
       headers: headers,
       data : requestData 
     };

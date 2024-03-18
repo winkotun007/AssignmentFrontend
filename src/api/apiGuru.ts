@@ -9,7 +9,7 @@ const controller = async <T>(
 ): Promise<TApiResponse<T>> => {
   try {
     const idToken = localStorage.getItem('TokenKey');
-    const apiBaseUrl = "https://localhost:7164/";
+    const apiBaseUrl = "http://47.128.148.50:80/";
 
     // const response: AxiosResponse<TApiResponse<T>> = await apiClient({
     //   method: method,

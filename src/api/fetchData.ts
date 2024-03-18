@@ -17,7 +17,7 @@ const fetchData = async<T> (url: string, data: any) => {
       headers.Authorization = `Bearer ${idToken}`;
     }
     const response: AxiosResponse<TApiResponse<T>> = await axios.post (url, data, {
-      baseURL: 'https://localhost:7164/',
+      baseURL: 'http://47.128.148.50:80/',
       headers: headers,
     });
 
