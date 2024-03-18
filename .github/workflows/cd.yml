@@ -35,7 +35,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Pull Docker image
+      - name: Pull Docker image d
         run: sudo docker pull winkohtun/assignmentfrontend:latest
       - name: Delete Old docker container
         run: sudo docker rm -f assignmentfrontend-container || true
