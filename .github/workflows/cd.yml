@@ -1,22 +1,22 @@
 
-# name: CD Pipeline
+name: CD Pipeline
 
-# on:
-#   workflow_run:
-#     workflows: [""]
-#     types:
-#       - completed
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
 
-# jobs:
+jobs:
 
-#   build:
+  build:
 
-#     runs-on: self-hosted
+    runs-on: self-hosted
 
-#     steps:
-#     - name: Pull Docker image
-#       run: sudo docker pull winkohtun/assignmentfrontend:latest
-#     - name: Delete Old docker container
-#       run: sudo docker rm -f assignmentfrontend-container || true
-#     - name: Run Docker Container
-#       run: sudo docker run -d -p 8080:8080 --name assignmentfrontend-container winkohtun/assignmentfrontend
+    steps:
+    - name: Pull Docker image
+      run: sudo docker pull winkohtun/assignmentfrontend:latest
+    - name: Delete Old docker container
+      run: sudo docker rm -f assignmentfrontend-container || true
+    - name: Run Docker Container
+      run: sudo docker run -d -p 8080:8080 --name assignmentfrontend-container winkohtun/assignmentfrontend
