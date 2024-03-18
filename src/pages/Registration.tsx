@@ -86,7 +86,7 @@ const Registration: React.FC = () => {
 
     fetchAllData();
   }, []); 
-
+//
 ///
     //fetchAllData(); // Call the function when the component mounts
 
