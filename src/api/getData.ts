@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { TApiResponse } from "../models";
+import { endpoint } from "./enpoints";
 
 // Define the interface for the response data
 
@@ -18,18 +19,15 @@ const getData = async <T>(url: string, requestData: any | null): Promise<TApiRes
       headers.Authorization= `Bearer ${idToken}`;
     }
 
-    console.log(requestData);
-
     const options: Record<string, any> = {
-      baseURL: 'http://47.128.148.50:80/',
+      // baseURL: 'http://47.128.148.50:80/',
+      baseURL : endpoint.baseApiURL,
       headers: headers,
       data : requestData 
     };
 
     const response: AxiosResponse<TApiResponse<T>> = await axios.get(url, options);
-    
-    console.log('Response From getData');
-    console.log(response);
+  
     return {
       code: response.data.code,
       message: response.data.message,

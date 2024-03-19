@@ -24,6 +24,11 @@ interface IVisitors {
   isConfirmed14Day: boolean;
   isFever: boolean;
   isAcknowledged: boolean;
+  businessEmail? : string;
+}
+
+interface IVisitorsEdit extends IVisitors {
+  visitorId?: string;
 }
 
  interface IVisitorswithId extends IVisitors
@@ -76,4 +81,4 @@ interface TApiResponse<T> {
 
   
   
-export { IPostLogin,TLoginResponse ,IVisitors,TResponse ,IRoom,ILevel,IBuilding ,IVisitorswithId,IDModel,TApiResponse};
+export { IVisitorsEdit,IPostLogin,TLoginResponse ,IVisitors,TResponse ,IRoom,ILevel,IBuilding ,IVisitorswithId,IDModel,TApiResponse};

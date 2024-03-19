@@ -6,6 +6,7 @@ import { IDModel, IVisitorswithId } from "../models";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete"; // Import delete icon
 import EditIcon from "@mui/icons-material/Edit"; // Import edit icon
+import deleteData from "../api/deleteData";
 
 const VisitorGrid = () => {
   const [rows, setRows] = useState<GridRowsProp>([]);
@@ -35,15 +36,25 @@ const VisitorGrid = () => {
     fetchVisitor();
   }, []); 
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     console.log("Deleting row with id:", id);
+    try {
+      const deleteDataResponse = await deleteData(endpoint.Visitors, id);
+      alert(deleteDataResponse.message);
+      window.location.reload();
+    } catch (error) {
+      alert(error);
+      console.error("Error deleting row:", error);
+    }
   };
 
   const handleEdit = (id: string) => {
     // Redirect to edit form page with id
     console.log("Editing row with id:", id);
+  
+    navigate(`/editRegistration/${id}`); // Combine id with URL using template literals
   };
-
+  
   const columns: GridColDef[] = [
     // Define columns as before
     // Add custom column for delete icon

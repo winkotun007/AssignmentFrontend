@@ -1,5 +1,6 @@
 import axios, {AxiosResponse } from "axios";
 import { TApiResponse } from "~/models";
+import apiClient from "./axios";
 export * from "../api/enpoints";
 
 const controller = async <T>(
@@ -9,8 +10,10 @@ const controller = async <T>(
 ): Promise<TApiResponse<T>> => {
   try {
     const idToken = localStorage.getItem('TokenKey');
-    const apiBaseUrl = "http://47.128.148.50:80/";
 
+    // const apiBaseUrl = "http://47.128.148.50:80/";
+
+    const apiBaseUrl = "https://localhost:7164/";
     // const response: AxiosResponse<TApiResponse<T>> = await apiClient({
     //   method: method,
     //   url: reqUrl,
@@ -31,43 +34,35 @@ const controller = async <T>(
       headers.Authorization = `Bearer ${idToken}`;
     }
 
-    const response = await axios.post(apiBaseUrl+reqUrl, data, {
-      headers: headers
-    });
-
-    console.log(response);
-    return {
-      code: response.data.code,
-      message: response.data.message,
-      data: response.data.data,
-    };
-
-
-    if(method=='post')
+    if(method == 'post')
     {
-       const response: AxiosResponse<TApiResponse<T>> = await axios.post (reqUrl, data, {
-        baseURL: 'https://localhost:7164/',
-        headers: headers,
-        method : method
+      const response = await axios.post(apiBaseUrl+reqUrl, data, {
+        headers: headers
       });
-      console.log('POST');
+      console.log('Post Res');
       console.log(response);
       return {
         code: response.data.code,
         message: response.data.message,
         data: response.data.data,
       };
+  
+  
     }
     else(method=='get')
     {
-      const options: Record<string, any> = {
-        baseURL: 'https://localhost:7164/',
-        headers: headers,
-        data : data  ,
-        method : method
-      };
+      const response: AxiosResponse<TApiResponse<T>> = await apiClient({
+        method: method,
+        url: reqUrl,
+        data: data,
+        baseURL: apiBaseUrl,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`
+        },
+      });
       
-      const response: AxiosResponse<TApiResponse<T>> = await axios.get(reqUrl, options);
+     // const response: AxiosResponse<TApiResponse<T>> = await axios.get(reqUrl, options);
       console.log('GET');
       console.log(response);
       return {
