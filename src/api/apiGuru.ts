@@ -1,6 +1,7 @@
 import axios, {AxiosResponse } from "axios";
 import { TApiResponse } from "~/models";
 import apiClient from "./axios";
+import { endpoint } from "./apiGuru";
 export * from "../api/enpoints";
 
 const controller = async <T>(
@@ -13,17 +14,7 @@ const controller = async <T>(
 
     // const apiBaseUrl = "http://47.128.148.50:80/";
 
-    const apiBaseUrl = "https://localhost:7164/";
-    // const response: AxiosResponse<TApiResponse<T>> = await apiClient({
-    //   method: method,
-    //   url: reqUrl,
-    //   data: data,
-    //   baseURL: apiBaseUrl,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Authorization": `Bearer ${idToken}`,
-    //   },
-    // });
+    const apiBaseUrl = endpoint.baseApiURL;
 
     const headers: { 'Content-Type': string; 'Authorization'?: string } = 
                     {
@@ -39,8 +30,6 @@ const controller = async <T>(
       const response = await axios.post(apiBaseUrl+reqUrl, data, {
         headers: headers
       });
-      console.log('Post Res');
-      console.log(response);
       return {
         code: response.data.code,
         message: response.data.message,
@@ -61,10 +50,6 @@ const controller = async <T>(
           Authorization: `Bearer ${idToken}`
         },
       });
-      
-     // const response: AxiosResponse<TApiResponse<T>> = await axios.get(reqUrl, options);
-      console.log('GET');
-      console.log(response);
       return {
         code: response.data.code,
         message: response.data.message,
