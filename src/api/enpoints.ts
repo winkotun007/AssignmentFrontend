@@ -6,7 +6,10 @@ export const endpoint = {
   getBuidling : 'api/Building',
   getRoomsByLevel : 'api/Rooms/GetRoomsByLevel',
   getLevelsByBuilding : 'api/Levels/GetLevelsByBuilding',
-
-
-  baseApiURL : 'http://47.128.148.50:80/'
+  getTreeViewCategory : 'api/Category/GetTreeNode',
+  getFlattenCategory : 'api/Category/GetFlattenList',
+  getCategoryByID : 'api/Category/GetCategoryByID',
+  Category : 'api/Category',
+   baseApiURL : 'http://47.128.148.50:80/'
+  //baseApiURL : 'https://localhost:7164/'
 };

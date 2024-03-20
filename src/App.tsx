@@ -10,6 +10,7 @@ import { Route, Routes } from "react-router-dom";
 import { LinearProgress } from "@mui/material";
 import Header from "./components/Header";
 import RegisterEditMain from "./pages/RegisterEditMain";
+import CategoryList from "./pages/category/categoryList";
 
 type LazyComponentType = LazyExoticComponent<ComponentType<any>>;
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/list" element={<ListComponent />} />
         <Route path="/login" element={<LoginComponent/>} />
         <Route path="/editRegistration/:slug" element={<RegisterEditMain/>} />
+        <Route path="/categoryList" element={<CategoryList />} />
       </Route>
     </Routes>
   );

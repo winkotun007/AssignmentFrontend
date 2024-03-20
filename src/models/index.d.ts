@@ -62,6 +62,21 @@ interface IBuilding {
   buildingCode : string;
 }
 
+interface TreeNode {
+  categoryId: string;
+  categoryCode: string;
+  categoryName: string;
+  parentCategoryId: string;
+  children?: TreeNode[];
+}
+
+interface ICategory {
+  categoryId: string;
+  categoryCode: string;
+  categoryName: string;
+  parentCategoryId: string;
+  childCategories?: ICategory[];
+}
 type TResponse<T>= {
   code : number;
   message : string; 
@@ -81,4 +96,4 @@ interface TApiResponse<T> {
 
   
   
-export { IVisitorsEdit,IPostLogin,TLoginResponse ,IVisitors,TResponse ,IRoom,ILevel,IBuilding ,IVisitorswithId,IDModel,TApiResponse};
+export { IVisitorsEdit,IPostLogin,TLoginResponse ,IVisitors,TResponse ,IRoom,ILevel,IBuilding ,IVisitorswithId,IDModel,TApiResponse,TreeNode,ICategory};
