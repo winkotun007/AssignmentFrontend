@@ -11,5 +11,5 @@ export const endpoint = {
   getCategoryByID : 'api/Category/GetCategoryByID',
   Category : 'api/Category',
    baseApiURL : 'http://47.128.148.50:80/'
-  //baseApiURL : 'https://localhost:7164/',
+  //baseApiURL : 'https://localhost:7164/',/
 };
